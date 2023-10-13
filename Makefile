@@ -7,7 +7,7 @@ re: fclean all
 
 # Cette règle permettra de démarrer votre environnement Docker Compose
 up:
-	docker-compose up
+	docker-compose up --build
 
 # Cette règle permettra de stopper et supprimer tous les conteneurs
 clean:

@@ -1,12 +1,20 @@
-# Utilisez l'image Node.js pour construire l'application Angular
-FROM node:19 AS build
-WORKDIR /app
-COPY package.json package-lock.json ./
-RUN npm install
-COPY . .
-RUN npm run build
+# Utilisez l'image Node.js pour le développement
+FROM node:16
 
-# Utilisez l'image Nginx pour servir l'application Angular
-FROM nginx:alpine
-COPY --from=build /app/dist/frontend /usr/share/nginx/html
-EXPOSE 80
+# Définir le répertoire de travail
+WORKDIR /app
+
+# Copier package.json et package-lock.json
+COPY package.json package-lock.json ./
+
+# Installer les dépendances
+RUN npm install
+
+# Copier le reste du code source
+COPY . .
+
+# Exposer le port 3000
+EXPOSE 3000
+
+# Lancer l'application Angular
+CMD ["npm", "start"]
