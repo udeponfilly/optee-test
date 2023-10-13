@@ -1,5 +1,5 @@
 # Utilisez l'image PHP 8.2 avec FPM
-FROM php:7.4-alpine
+FROM php:8.1.0-fpm
 
 # Installez les extensions PHP nécessaires
 RUN apt-get update && apt-get install -y \
@@ -9,6 +9,9 @@ RUN apt-get update && apt-get install -y \
     && docker-php-ext-configure gd --with-freetype --with-jpeg \
     && docker-php-ext-install -j$(nproc) gd \
     && docker-php-ext-install pdo pdo_mysql
+
+RUN curl -sS https://get.symfony.com/cli/installer | bash
+RUN mv /root/.symfony5/bin/symfony /usr/local/bin/symfony
 
 # Copiez le code source dans le conteneur
 COPY . /var/www/html

@@ -13,8 +13,8 @@ RUN npm install
 # Copier le reste du code source
 COPY . .
 
-# Exposer le port 3000
-EXPOSE 3000
+# Exposer le port 4200
+EXPOSE 4200
 
 # Lancer l'application Angular
 CMD ["npm", "start"]
