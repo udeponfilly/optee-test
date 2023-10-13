@@ -1,0 +1,41 @@
+version: "3"
+services:
+  mysql:
+    image: mysql:8.0
+    platform: linux/x86_64
+    container_name: mysql-container
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: optee
+      MYSQL_USER: optee_user
+      MYSQL_PASSWORD: optee_password
+    volumes:
+      - mysql-data:/var/lib/mysql
+    ports:
+      - "3306:3306"
+
+  frontend:
+    image: nginx:alpine
+    platform: linux/x86_64
+    container_name: frontend-container
+    volumes:
+      - ./optee_frontend/dist/optee_frontend:/usr/share/nginx/html
+    ports:
+      - "3000:80"
+
+  backend:
+    image: php:7.4-fpm
+    platform: linux/x86_64
+    container_name: backend-container
+    volumes:
+      - ./optee_api:/var/www/html
+    ports:
+      - "9000:9000"
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: optee
+      MYSQL_USER: optee_user
+      MYSQL_PASSWORD: optee_password
+
+volumes:
+  mysql-data:
