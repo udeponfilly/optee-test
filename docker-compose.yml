@@ -52,7 +52,7 @@ services:
       MYSQL_USER: optee_user
       MYSQL_PASSWORD: optee_password
     volumes:
-      - ./api:/app
+      - ./api:/var/www/html
     depends_on:
       - mysql
     command: >
