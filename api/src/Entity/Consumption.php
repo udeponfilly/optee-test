@@ -16,20 +16,20 @@ class Consumption
     #[Groups(["getConsumption", "getEnergy"])]
     private ?int $id = null;
 
-    #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
+    #[ORM\Column(type: Types::DATE_MUTABLE)]
     #[Groups(["getConsumption", "getEnergy"])]
     private ?\DateTimeInterface $date = null;
 
     #[ORM\ManyToOne(inversedBy: 'consumptions')]
     #[ORM\JoinColumn(nullable: false)]
     #[Groups(["getConsumption"])]
-    private ?energyType $energyType = null;
+    private ?EnergyType $energyType = null;
 
-    #[ORM\Column(nullable: true)]
+    #[ORM\Column(nullable: false)]
     #[Groups(["getConsumption", "getEnergy"])]
     private ?float $quantity = null;
 
-    #[ORM\Column(nullable: true)]
+    #[ORM\Column(nullable: false)]
     #[Groups(["getConsumption", "getEnergy"])]
     private ?float $cost = null;
 
@@ -50,12 +50,12 @@ class Consumption
         return $this;
     }
 
-    public function getEnergyType(): ?energyType
+    public function getEnergyType(): ?EnergyType
     {
         return $this->energyType;
     }
 
-    public function setEnergyType(?energyType $energyType): static
+    public function setEnergyType(?EnergyType $energyType): static
     {
         $this->energyType = $energyType;
 

@@ -8,14 +8,22 @@ use Doctrine\Persistence\ObjectManager;
 
 class EnergyTypeFixtures extends Fixture
 {
-    public function load(ObjectManager $manager): void
+    public function load(ObjectManager $manager)
     {
-        $energyType = new EnergyType();
-        $energyType->setName('Électricité');
-        $energyType->setUnit('kWh');
-        $energyType->setAveragePricePerUnit(0.15);
+        $energyTypes = [
+            ['name' => 'Électricité', 'unit' => 'kWh', 'averagePricePerUnit' => 0.15],
+            ['name' => 'Gaz', 'unit' => 'm³', 'averagePricePerUnit' => 0.07],
+            ['name' => 'Eau', 'unit' => 'L', 'averagePricePerUnit' => 0.002],
+        ];
 
-        $manager->persist($energyType);
+        foreach ($energyTypes as $type) {
+            $energyType = new EnergyType();
+            $energyType->setName($type['name']);
+            $energyType->setUnit($type['unit']);
+            $energyType->setAveragePricePerUnit($type['averagePricePerUnit']);
+            $manager->persist($energyType);
+        }
+
         $manager->flush();
     }
 }

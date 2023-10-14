@@ -1,0 +1,5 @@
+<ul *ngFor="let energyList of energyList$ | async">
+  <li>{{ energyList.name }}</li>
+  <li>{{ energyList.averagePricePerUnit }}</li>
+  <li>{{ energyList.unit }}</li>
+</ul>
