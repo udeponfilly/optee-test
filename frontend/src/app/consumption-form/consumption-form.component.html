@@ -1,19 +1,62 @@
-<form [formGroup]="consumptionForm" (ngSubmit)="onSubmit()">
-  <label for="date">Date :</label>
-  <input id="date" formControlName="date" type="date" />
+<div style="display: flex; align-items: center; justify-content: center">
+  <div class="energy-card" *ngIf="energyType$ | async as energy">
+    <p-card
+      header="AJOUTEZ VOTRE CONSOMMATION EN {{ energy.name | uppercase }}"
+      [style]="{
+        width: '30rem',
+        textAlign: 'center',
+        backgroundColor: '#F8F9FA',
+        border: '1px solid #bbb'
+      }"
+      styleClass="mr-10"
+    >
+      <i
+        *ngIf="energy.id === 1"
+        class="fa-solid fa-xl fa-bolt mb-10"
+        style="color: #ffd43b"
+      ></i>
+      <i
+        *ngIf="energy.id === 2"
+        class="fa-solid fa-xl fa-fire-flame-simple mb-10"
+        style="color: #da541b"
+      ></i>
+      <i
+        *ngIf="energy.id === 3"
+        class="fa-solid fa-xl fa-droplet mb-10"
+        style="color: #3996f9"
+      ></i>
+      <p class="price">
+        Prix actuel : {{ energy.averagePricePerUnit }} € / {{ energy.unit }}
+      </p>
+      <form [formGroup]="consumptionForm" (ngSubmit)="onSubmit()">
+        <label for="date">Mois : </label>
+        <p-calendar
+          id="date"
+          formControlName="date"
+          view="month"
+          dateFormat="mm/yy"
+          [readonlyInput]="true"
+        ></p-calendar>
 
-  <label for="energyType">Type d'énergie :</label>
-  <select id="energyType" formControlName="energyType">
-    <option value="Électricité">Électricité</option>
-    <option value="Gaz">Gaz</option>
-    <option value="Eau">Eau</option>
-  </select>
-
-  <label for="quantity">Quantité :</label>
-  <input id="quantity" formControlName="quantity" type="number" />
-
-  <label for="cost">Coût :</label>
-  <input id="cost" formControlName="cost" type="number" />
-
-  <button type="submit">Envoyer</button>
-</form>
+        <label for="quantity">Quantité :</label>
+        <p-inputNumber
+          id="quantity"
+          inputId="integeronly"
+          formControlName="quantity"
+        ></p-inputNumber>
+        <p-button
+          label="Envoyer"
+          [text]="true"
+          [raised]="true"
+          severity="secondary"
+          type="submit"
+        ></p-button>
+        <p-messages
+          [(value)]="messages"
+          [enableService]="false"
+          [closable]="false"
+        ></p-messages>
+      </form>
+    </p-card>
+  </div>
+</div>

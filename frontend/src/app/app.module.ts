@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -12,7 +13,10 @@ import { ButtonModule } from 'primeng/button';
 import { TopbarComponent } from './topbar/topbar.component';
 import { ToolbarModule } from 'primeng/toolbar';
 import { CardModule } from 'primeng/card';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CalendarModule } from 'primeng/calendar';
+import { InputNumberModule } from 'primeng/inputnumber';
+import { MessagesModule } from 'primeng/messages';
 
 @NgModule({
   declarations: [
@@ -25,12 +29,17 @@ import { ReactiveFormsModule } from '@angular/forms';
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     HttpClientModule,
     ButtonModule,
     ToolbarModule,
     CardModule,
     ReactiveFormsModule,
+    CalendarModule,
+    FormsModule,
+    InputNumberModule,
+    MessagesModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
