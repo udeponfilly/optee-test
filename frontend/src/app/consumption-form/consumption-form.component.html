@@ -1,1 +1,19 @@
-<p>consumption-form works!</p>
+<form [formGroup]="consumptionForm" (ngSubmit)="onSubmit()">
+  <label for="date">Date :</label>
+  <input id="date" formControlName="date" type="date" />
+
+  <label for="energyType">Type d'énergie :</label>
+  <select id="energyType" formControlName="energyType">
+    <option value="Électricité">Électricité</option>
+    <option value="Gaz">Gaz</option>
+    <option value="Eau">Eau</option>
+  </select>
+
+  <label for="quantity">Quantité :</label>
+  <input id="quantity" formControlName="quantity" type="number" />
+
+  <label for="cost">Coût :</label>
+  <input id="cost" formControlName="cost" type="number" />
+
+  <button type="submit">Envoyer</button>
+</form>

@@ -6,7 +6,7 @@ import { ConsumptionListComponent } from './consumption-list/consumption-list.co
 
 const routes: Routes = [
   { path: 'energy-types', component: EnergyTypeListComponent },
-  { path: 'add-consumption', component: ConsumptionFormComponent },
+  { path: 'add-consumption/:id', component: ConsumptionFormComponent },
   { path: 'consumptions', component: ConsumptionListComponent },
   { path: '', redirectTo: '/energy-types', pathMatch: 'full' },
 ];

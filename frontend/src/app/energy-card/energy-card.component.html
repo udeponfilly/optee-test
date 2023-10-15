@@ -1,0 +1,22 @@
+<div [ngClass]="getClasses()" class="energy-card" (click)="onClick()">
+  <p-card
+    header="{{ energy.name | uppercase }}"
+    [style]="{
+      width: '15rem',
+      textAlign: 'center',
+      backgroundColor: '#F8F9FA',
+      border: '1px solid #bbb'
+    }"
+    styleClass="mr-10"
+  >
+    <i *ngIf="energy.id === 1" class="fa-solid fa-xl fa-bolt mb-10"></i>
+    <i
+      *ngIf="energy.id === 2"
+      class="fa-solid fa-xl fa-fire-flame-simple mb-10"
+    ></i>
+    <i *ngIf="energy.id === 3" class="fa-solid fa-xl fa-droplet mb-10"></i>
+    <p class="price">
+      Prix actuel : {{ energy.averagePricePerUnit }} € / {{ energy.unit }}
+    </p>
+  </p-card>
+</div>

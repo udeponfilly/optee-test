@@ -1,0 +1,35 @@
+.energy-card {
+  margin: 10px;
+  width: 15rem;
+  margin-top: 100px;
+  cursor: pointer;
+}
+
+.electricity {
+  &:hover {
+    i {
+      color: #ffd43b;
+    }
+  }
+}
+
+.water {
+  &:hover {
+    i {
+      color: #3996f9;
+    }
+  }
+}
+
+.gaz {
+  &:hover {
+    i {
+      color: #da541b;
+    }
+  }
+}
+
+.price {
+  margin-top: 25px;
+  margin-bottom: 0px;
+}
