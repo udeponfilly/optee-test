@@ -13,7 +13,7 @@ export class TopbarComponent {
     this.router.navigateByUrl('energy-types');
   }
 
-  onClickConsumptions(): void {
-    this.router.navigateByUrl('consumptions');
+  onClickDashboard(): void {
+    this.router.navigateByUrl('dashboard');
   }
 }

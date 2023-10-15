@@ -60,7 +60,7 @@ export class ConsumptionFormComponent implements OnInit {
       this.consumption.energyType = this.energyType;
       this.consumption.date = this.formatDate(this.consumptionForm.value.date);
       this.consumption.quantity = this.consumptionForm.value.quantity;
-      this.consumption.cost = this.cost;
+      this.consumption.cost = this.cost * this.consumption.quantity;
       this.energyService.addConsumption(this.consumption).subscribe({
         next: (response) => {
           this.messages = [

@@ -25,11 +25,8 @@
         class="fa-solid fa-xl fa-droplet mb-10"
         style="color: #3996f9"
       ></i>
-      <p class="price">
-        Prix actuel : {{ energy.averagePricePerUnit }} € / {{ energy.unit }}
-      </p>
       <form [formGroup]="consumptionForm" (ngSubmit)="onSubmit()">
-        <label for="date">Mois : </label>
+        <label for="date" style="margin-top: 30px">Date :</label>
         <p-calendar
           id="date"
           formControlName="date"
@@ -38,11 +35,14 @@
           [readonlyInput]="true"
         ></p-calendar>
 
-        <label for="quantity">Quantité :</label>
+        <label for="quantity" style="margin-top: 30px"
+          >Consommation (en {{ energy.unit }}) :</label
+        >
         <p-inputNumber
           id="quantity"
           inputId="integeronly"
           formControlName="quantity"
+          [placeholder]="energy.unit"
         ></p-inputNumber>
         <p-button
           label="Envoyer"

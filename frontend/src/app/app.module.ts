@@ -7,7 +7,7 @@ import { AppComponent } from './app.component';
 import { ConsumptionFormComponent } from './consumption-form/consumption-form.component';
 import { HttpClientModule } from '@angular/common/http';
 import { EnergyTypeListComponent } from './energy-type-list/energy-type-list.component';
-import { ConsumptionListComponent } from './consumption-list/consumption-list.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 import { EnergyCardComponent } from './energy-card/energy-card.component';
 import { ButtonModule } from 'primeng/button';
 import { TopbarComponent } from './topbar/topbar.component';
@@ -23,9 +23,9 @@ import { MessagesModule } from 'primeng/messages';
     AppComponent,
     ConsumptionFormComponent,
     EnergyTypeListComponent,
-    ConsumptionListComponent,
     EnergyCardComponent,
     TopbarComponent,
+    DashboardComponent,
   ],
   imports: [
     BrowserModule,
