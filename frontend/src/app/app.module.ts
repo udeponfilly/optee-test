@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { LOCALE_ID, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -18,6 +18,11 @@ import { CalendarModule } from 'primeng/calendar';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { MessagesModule } from 'primeng/messages';
 import { ErrorComponent } from './error/error.component';
+import { SelectButtonModule } from 'primeng/selectbutton';
+import { TableModule } from 'primeng/table';
+import { registerLocaleData } from '@angular/common';
+import * as fr from '@angular/common/locales/fr';
+import { ConsumptionTableComponent } from './consumption-table/consumption-table.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +33,7 @@ import { ErrorComponent } from './error/error.component';
     TopbarComponent,
     DashboardComponent,
     ErrorComponent,
+    ConsumptionTableComponent,
   ],
   imports: [
     BrowserModule,
@@ -42,8 +48,14 @@ import { ErrorComponent } from './error/error.component';
     FormsModule,
     InputNumberModule,
     MessagesModule,
+    SelectButtonModule,
+    TableModule,
   ],
-  providers: [],
+  providers: [{ provide: LOCALE_ID, useValue: 'fr-FR' }],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule {
+  constructor() {
+    registerLocaleData(fr.default);
+  }
+}
