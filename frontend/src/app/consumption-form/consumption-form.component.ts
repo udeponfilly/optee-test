@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Observable, tap } from 'rxjs';
 import { Energy } from '../models/energy.models';
 import { EnergyService } from '../energy-service.service';
 import { Consumption } from '../models/consumption.models';
-import { Message, MessageService } from 'primeng/api';
+import { Message } from 'primeng/api';
 
 @Component({
   selector: 'app-consumption-form',
@@ -24,6 +24,7 @@ export class ConsumptionFormComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private route: ActivatedRoute,
+    private router: Router,
     private energyService: EnergyService
   ) {}
 
@@ -39,6 +40,9 @@ export class ConsumptionFormComponent implements OnInit {
         .getEnergyTypeById(+this.energyId)
         .pipe(
           tap((energyType) => {
+            if (!energyType.id) {
+              this.router.navigate(['/error']);
+            }
             this.cost = energyType.averagePricePerUnit;
             this.energyType = energyType.id;
           })

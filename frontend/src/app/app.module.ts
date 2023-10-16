@@ -17,6 +17,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CalendarModule } from 'primeng/calendar';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { MessagesModule } from 'primeng/messages';
+import { ErrorComponent } from './error/error.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { MessagesModule } from 'primeng/messages';
     EnergyCardComponent,
     TopbarComponent,
     DashboardComponent,
+    ErrorComponent,
   ],
   imports: [
     BrowserModule,
