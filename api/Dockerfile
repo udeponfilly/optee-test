@@ -16,8 +16,12 @@ RUN mv /root/.symfony5/bin/symfony /usr/local/bin/symfony
 # Copiez le code source dans le conteneur
 COPY . /var/www/html
 
+COPY entrypoint.sh /entrypoint.sh
+
 # Configurer les permissions
 RUN chown -R www-data:www-data /var/www/html/var
 
 # Exposez le port 3001
 EXPOSE 3001
+
+ENTRYPOINT ["/entrypoint.sh"]

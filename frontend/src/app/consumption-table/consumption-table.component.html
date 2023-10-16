@@ -1,4 +1,54 @@
-<p-table [value]="filteredConsumptions" [tableStyle]="{ 'min-width': '50rem' }">
+<div class="logo">
+  <i
+    *ngIf="energy === 'Électricité'"
+    class="fa-solid fa-2xl fa-bolt mb-10 mt-10"
+    style="color: #ffd43b"
+  ></i>
+  <i
+    *ngIf="energy === 'Gaz'"
+    class="fa-solid fa-2xl fa-fire-flame-simple mb-10 mt-10"
+    style="color: #da541b"
+  ></i>
+  <i
+    *ngIf="energy === 'Eau'"
+    class="fa-solid fa-2xl fa-droplet mb-10 mt-10"
+    style="color: #3996f9"
+  ></i>
+</div>
+
+<div class="energy-card">
+  <p-card
+    header="Consommation moyenne dans votre région"
+    [style]="{
+      maxWidth: '20rem',
+      maxHeight: '20rem',
+      textAlign: 'center',
+      backgroundColor: '#F8F9FA',
+      border: '1px solid #bbb',
+      marginLeft: '10px',
+      marginRight: '10px'
+    }"
+  >
+    <p class="price">{{ regionConsumption }}</p>
+  </p-card>
+  <p-card
+    header="Consommation moyenne pour votre type de bâtiments"
+    [style]="{
+      maxWidth: '20rem',
+      maxHeight: '20rem',
+      textAlign: 'center',
+      backgroundColor: '#F8F9FA',
+      border: '1px solid #bbb',
+      marginLeft: '10px',
+      marginRight: '10px'
+    }"
+    styleClass="mr-10"
+  >
+    <p class="price">{{ buildingConsumption }}</p>
+  </p-card>
+</div>
+
+<p-table [value]="filteredConsumptions" [tableStyle]="{ 'min-width': '20rem' }">
   <ng-template pTemplate="header">
     <tr>
       <th>Mois</th>
@@ -8,7 +58,7 @@
   </ng-template>
   <ng-template pTemplate="body" let-consumption>
     <tr>
-      <td>{{ consumption.date | date : "MMMM" }}</td>
+      <td>{{ consumption.date | date : "MMMM yyyy" }}</td>
       <td>
         {{ consumption.quantity | number }} {{ consumption.energyType.unit }}
       </td>
