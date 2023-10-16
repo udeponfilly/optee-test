@@ -39,28 +39,23 @@ class ConsumptionController extends AbstractController
     {
         $consumption = $serializer->deserialize($request->getContent(), Consumption::class, 'json');
 
-        // Récupérez l'ID du type d'énergie à partir du contenu de la requête
         $content = $request->toArray();
         $idEnergyType = $content['energyType'] ?? null;
 
-        // Trouvez l'entité EnergyType correspondante
         $energyType = $energyTypeRepository->find($idEnergyType);
 
         if (!$energyType) {
             return new JsonResponse(['error' => 'EnergyType not found'], JsonResponse::HTTP_BAD_REQUEST);
         }
 
-        // Associez l'entité EnergyType à l'entité Consumption
         $consumption->setEnergyType($energyType);
 
-        // Validez l'entité Consumption
         $errors = $validator->validate($consumption);
 
         if ($errors->count() > 0) {
             return new JsonResponse($serializer->serialize($errors, 'json'), JsonResponse::HTTP_BAD_REQUEST, [], true);
         }
 
-        // Persistez et enregistrez l'entité Consumption
         $em->persist($consumption);
         $em->flush();
 

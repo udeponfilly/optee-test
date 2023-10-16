@@ -1,7 +1,5 @@
-# Utilisez l'image PHP 8.2 avec FPM
 FROM php:8.1.0-fpm
 
-# Installez les extensions PHP nécessaires
 RUN apt-get update && apt-get install -y \
     libpng-dev \
     libjpeg62-turbo-dev \
@@ -13,15 +11,12 @@ RUN apt-get update && apt-get install -y \
 RUN curl -sS https://get.symfony.com/cli/installer | bash
 RUN mv /root/.symfony5/bin/symfony /usr/local/bin/symfony
 
-# Copiez le code source dans le conteneur
 COPY . /var/www/html
 
 COPY entrypoint.sh /entrypoint.sh
 
-# Configurer les permissions
-RUN chown -R www-data:www-data /var/www/html/var
+RUN mkdir -p /var/www/html/var && chown -R www-data:www-data /var/www/html/var
 
-# Exposez le port 3001
 EXPOSE 3001
 
 ENTRYPOINT ["/entrypoint.sh"]
